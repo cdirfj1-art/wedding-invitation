@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>دعوة زفاف | رهف وعبدالمحسن</title>
+<title>Wedding Invitation | Rahaf & Abdulmohsen</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,13 +48,6 @@ body {
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
-}
-
-@media (min-width: 480px) {
-  .mobile-container {
-    border-radius: 20px;
-    height: 90vh;
-  }
 }
 
 /* Screens */
@@ -226,6 +219,7 @@ body {
   width: 100%;
 }
 
+/* Black Pure & Perfectly Fitted Typography */
 .arabic-poetic-text {
   font-family: 'Cairo', 'Amiri', serif;
   font-size: 12.5px;
@@ -246,6 +240,7 @@ body {
   margin-bottom: 4px;
 }
 
+/* Page 2 Names */
 .names-heading {
   font-family: 'Alex Brush', cursive;
   font-size: 38px;
@@ -255,6 +250,7 @@ body {
   letter-spacing: 1px;
 }
 
+/* Wax Seal */
 .wax-seal {
   width: 52px;
   height: 52px;
@@ -270,6 +266,7 @@ body {
   border: 2px solid rgba(255,255,255,0.3);
 }
 
+/* Disc Player Styling */
 .cd-wrapper {
   display: inline-flex;
   flex-direction: column;
@@ -309,6 +306,7 @@ body {
   border-radius: 12px;
 }
 
+/* Countdown Timer */
 .timer-banner {
   background: linear-gradient(135deg, #2f3b25, #192212);
   color: #ffffff;
@@ -351,6 +349,7 @@ body {
   margin-bottom: 6px;
 }
 
+/* Privacy Note */
 .privacy-note {
   margin-top: 6px;
   padding-top: 6px;
@@ -391,6 +390,7 @@ body {
   font-weight: 900;
 }
 
+/* Details Box WITHOUT background frame */
 .detail-box {
   margin-top: 12px;
   background: transparent !important;
@@ -432,6 +432,7 @@ body {
   text-transform: uppercase;
 }
 
+/* BOTTOM NAVIGATION BAR */
 .bottom-nav {
   position: absolute;
   bottom: 0;
@@ -496,11 +497,13 @@ body {
   <audio id="bgMusic" loop playsinline preload="auto">
     <source src="./ScreenRecording_08-13-2026 03-16-43_1 2.mp4" type="audio/mp4">
     <source src="./music.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
   </audio>
 
   <section class="screen active" id="s0">
     <div class="screen-bg-wrapper"></div>
     <div class="hero-cover">
+      
       <div class="cd-wrapper" onclick="toggleMusic(event)">
         <div class="cd-disc paused" id="cdDisc"></div>
         <span class="cd-label">🎵 تشغيل / إيقاف الموسيقى</span>
@@ -508,6 +511,7 @@ body {
 
       <div class="envelope-overlay" onclick="handleEnvelopeClick()">
         <img src="./images/The adverb of the message.jpeg" alt="Envelope" class="message-img-hero">
+        
         <div class="couple-names-under">
           <span>Rahaf</span>
           <span class="heart-icon">&</span>
@@ -519,6 +523,7 @@ body {
         <p class="click-hint">اضغط للفتح</p>
         <p class="click-subhint">دعوة لشخص واحد</p>
       </div>
+
     </div>
   </section>
 
@@ -537,6 +542,7 @@ body {
     <div class="screen-bg-wrapper"></div>
     <div class="envelope-card-bg" onclick="nextStep()">
       <div class="card-content">
+
         <p class="arabic-poetic-text">
           إلى مَن لامَسَت قُلُوبهم شِغافُ قُلوبِنا<br>
           اليَوم نُقاسِيمكم سُرورنا وجَميلُ شُعورنَا<br>
@@ -562,6 +568,7 @@ body {
           <div class="camera-icon">📷</div>
           <p class="privacy-text">نستأمنكم خصوصية عروستنا وضيوفنا بعدم التصوير</p>
         </div>
+
       </div>
     </div>
   </section>
@@ -633,6 +640,7 @@ const bgMusic = document.getElementById('bgMusic');
 let audioCtx = null;
 let autoSlideInterval = null;
 
+// Unlocking Web Audio Context for Mobile Browsers
 function initAudioContext() {
   if (!audioCtx) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -686,6 +694,7 @@ function handleEnvelopeClick() {
 
 function goToStep(stepIndex) {
   if (stepIndex < 0 || stepIndex >= totalSteps) return;
+  
   currentStep = stepIndex;
 
   screens.forEach((screen, index) => {
