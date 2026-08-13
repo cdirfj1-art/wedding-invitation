@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>دعوة زفاف | رهف وعبدالمحسن</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,700;1,700&family=Alex+Brush&family=Cairo:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg-cream: #f6f3eb;
+  --card-bg: transparent;
+  --olive-green: #606d53;
+  --olive-dark: #2d3822;
+  --gold-accent: #c2b280;
+  --text-dark: #000000;
+  --text-muted: #222222;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #1a1c18;
+  color: var(--text-dark);
+  font-family: 'Cairo', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+}
+
+.mobile-container {
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  max-height: 850px;
+  background: var(--bg-cream);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 480px) {
+  .mobile-container {
+    border-radius: 20px;
+    height: 90vh;
+  }
+}
+
+/* Screens */
+.screen {
+  position: absolute;
+  inset: 0;
+  padding: 0 0 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(15px);
+  overflow-y: auto;
+}
+
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* BACKGROUND FOR ALL PAGES (old.jpeg) */
+.screen-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  background-image: url('./images/old.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.screen-bg-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.5) 100%);
+  z-index: 1;
+}
+
+/* STEP 0: HERO COVER */
+.hero-cover {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px 30px;
+}
+
+.hero-header {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+}
+
+/* Envelope Overlay Image */
+.envelope-overlay {
+  position: relative;
+  z-index: 2;
+  width: 92%;
+  max-width: 360px;
+  cursor: pointer;
+  margin: auto 0;
+  transition: transform 0.3s ease;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.envelope-overlay:hover {
+  transform: scale(1.02);
+}
+
+.message-img-hero {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  clip-path: polygon(8.5% 31.5%, 50% 1.5%, 91.5% 31.5%, 91.5% 82.5%, 8.5% 82.5%);
+}
+
+.couple-names-under {
+  font-family: 'Alex Brush', 'Playfair Display', cursive, serif;
+  font-size: 40px;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  direction: ltr;
+  margin-top: 15px;
+  text-shadow: 0 3px 14px rgba(0,0,0,0.95);
+}
+
+.heart-icon {
+  color: var(--gold-accent);
+  font-size: 26px;
+}
+
+.hero-footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #ffffff;
+}
+
+.click-hint {
+  font-size: 22px;
+  font-weight: 900;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.95);
+  margin-bottom: 4px;
+}
+
+.click-subhint {
+  font-size: 14px;
+  font-weight: 800;
+  opacity: 0.95;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+}
+
+/* CARDS WITH BACKGROUND IMAGE (open the message.jpeg) */
+.envelope-card-bg {
+  width: 92%;
+  max-width: 380px;
+  min-height: 520px;
+  position: relative;
+  z-index: 2;
+  background-image: url('./images/Open the message.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 55px 25px 20px;
+  text-align: center;
+  margin: auto;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  clip-path: polygon(7.5% 32.5%, 50% 1.8%, 92.5% 32.5%, 92.5% 99.2%, 7.5% 99.2%);
+}
+
+.card-overlay {
+  display: none !important;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.arabic-poetic-text {
+  font-family: 'Cairo', 'Amiri', serif;
+  font-size: 12.5px;
+  line-height: 1.4;
+  color: #000000;
+  font-weight: 900;
+  margin: 2px 0 4px;
+  letter-spacing: 0;
+  word-break: keep-all;
+}
+
+.wedding-title-arabic {
+  font-family: 'Cairo', 'Aref Ruqaa', serif;
+  font-size: 26px;
+  color: #000000;
+  font-weight: 900;
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+
+.names-heading {
+  font-family: 'Alex Brush', cursive;
+  font-size: 38px;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.wax-seal {
+  width: 52px;
+  height: 52px;
+  background: radial-gradient(circle, #617351 0%, #35422a 100%);
+  border-radius: 50%;
+  margin: 10px auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-accent);
+  font-size: 22px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.cd-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.cd-disc {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 15%, #333 16%, #888 25%, #222 30%, #555 60%, #111 100%);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  border: 2px solid #ddd;
+  animation: spin 8s linear infinite;
+}
+
+.cd-disc.paused {
+  animation-play-state: paused;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.cd-label {
+  font-size: 13px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-top: 6px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.4);
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.timer-banner {
+  background: linear-gradient(135deg, #2f3b25, #192212);
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 8px 6px;
+  margin: 6px 0 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.timer-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  direction: ltr;
+}
+
+.timer-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-val {
+  font-size: 22px;
+  font-weight: 900;
+  font-family: sans-serif;
+}
+
+.timer-lbl {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  opacity: 0.95;
+}
+
+.timer-sep {
+  font-size: 18px;
+  font-weight: 900;
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+
+.privacy-note {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.camera-icon {
+  width: 26px;
+  height: 26px;
+  border: 2px solid #681d1d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #681d1d;
+  position: relative;
+  font-weight: 900;
+}
+
+.camera-icon::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background-color: #681d1d;
+  transform: rotate(-45deg);
+}
+
+.privacy-text {
+  font-size: 11.5px;
+  color: #000000;
+  line-height: 1.3;
+  font-weight: 900;
+}
+
+.detail-box {
+  margin-top: 12px;
+  background: transparent !important;
+  border: none !important;
+  padding: 10px;
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+.detail-title {
+  color: #000000;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.btn-open {
+  background: linear-gradient(135deg, #37442e, #1d2516);
+  color: #ffffff;
+  border: none;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+}
+
+.btn-open span.sub {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  opacity: 0.95;
+  text-transform: uppercase;
+}
+
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(252, 251, 247, 0.98);
+  border-top: 1px solid rgba(194, 178, 128, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  z-index: 10;
+}
+
+.nav-btn {
+  background: #2d3822;
+  color: #ffffff;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.2s;
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.nav-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  opacity: 0.4;
+  transition: all 0.3s;
+}
+
+.dot.active {
+  background: #2d3822;
+  opacity: 1;
+  width: 18px;
+  border-radius: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="mobile-container">
+
+  <audio id="bgMusic" loop playsinline preload="auto">
+    <source src="./ScreenRecording_08-13-2026 03-16-43_1 2.mp4" type="audio/mp4">
+    <source src="./music.mp3" type="audio/mpeg">
+  </audio>
+
+  <section class="screen active" id="s0">
+    <div class="screen-bg-wrapper"></div>
+    <div class="hero-cover">
+      <div class="cd-wrapper" onclick="toggleMusic(event)">
+        <div class="cd-disc paused" id="cdDisc"></div>
+        <span class="cd-label">🎵 تشغيل / إيقاف الموسيقى</span>
+      </div>
+
+      <div class="envelope-overlay" onclick="handleEnvelopeClick()">
+        <img src="./images/The adverb of the message.jpeg" alt="Envelope" class="message-img-hero">
+        <div class="couple-names-under">
+          <span>Rahaf</span>
+          <span class="heart-icon">&</span>
+          <span>Abdulmohsen</span>
+        </div>
+      </div>
+
+      <div class="hero-footer">
+        <p class="click-hint">اضغط للفتح</p>
+        <p class="click-subhint">دعوة لشخص واحد</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="s1">
+    <div class="screen-bg-wrapper"></div>
+    <div class="envelope-card-bg" onclick="nextStep()">
+      <div class="card-content">
+        <div class="wax-seal">💍</div>
+        <div class="names-heading">Rahaf & Abdulmohsen</div>
+        <p style="color: #000000; font-size: 18px; font-weight: 900; margin-top: 10px;">اضغط للاستمرار</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="s2">
+    <div class="screen-bg-wrapper"></div>
+    <div class="envelope-card-bg" onclick="nextStep()">
+      <div class="card-content">
+        <p class="arabic-poetic-text">
+          إلى مَن لامَسَت قُلُوبهم شِغافُ قُلوبِنا<br>
+          اليَوم نُقاسِيمكم سُرورنا وجَميلُ شُعورنَا<br>
+          صُحبَة العمر ، أحْباء الـــرُوح<br>
+          بكل الحب أتشرف بدعوتكم في
+        </p>
+
+        <div class="wedding-title-arabic">حفل زفافـي</div>
+
+        <div class="timer-banner" onclick="event.stopPropagation();">
+          <div class="timer-grid">
+            <div class="timer-col"><span class="timer-val" id="seconds">00</span><span class="timer-lbl">SECONDS</span></div>
+            <span class="timer-sep">:</span>
+            <div class="timer-col"><span class="timer-val" id="minutes">00</span><span class="timer-lbl">MINUTES</span></div>
+            <span class="timer-sep">:</span>
+            <div class="timer-col"><span class="timer-val" id="hours">00</span><span class="timer-lbl">HOURS</span></div>
+            <span class="timer-sep">:</span>
+            <div class="timer-col"><span class="timer-val" id="days">00</span><span class="timer-lbl">DAYS</span></div>
+          </div>
+        </div>
+
+        <div class="privacy-note">
+          <div class="camera-icon">📷</div>
+          <p class="privacy-text">نستأمنكم خصوصية عروستنا وضيوفنا بعدم التصوير</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="s3">
+    <div class="screen-bg-wrapper"></div>
+    <div class="envelope-card-bg" onclick="nextStep()">
+      <div class="card-content">
+        <div class="wax-seal">📅</div>
+        <div class="detail-title">موعد الزواج</div>
+        <div class="detail-box">
+          <p style="font-size: 22px; color: #000000; font-weight: 900;">يوم السبت</p>
+          <p style="font-size: 32px; color: #000000; font-weight: 900; font-family: sans-serif; margin: 4px 0;">05 / 09 / 2026</p>
+          <p style="color: #000000; font-size: 15px; font-weight: 900;">الموافق ٢٣ صفر ١٤٤٨ هـ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="s4">
+    <div class="screen-bg-wrapper"></div>
+    <div class="envelope-card-bg">
+      <div class="card-content">
+        <div class="wax-seal">📍</div>
+        <div class="detail-title">موقع الزواج</div>
+        <div class="detail-box">
+          <p style="font-size: 22px; color: #000000; font-weight: 900;">منتجع نوفمبر</p>
+          <p style="font-size: 18px; color: #000000; margin-top: 5px; font-weight: 900;">قاعة ٣ - الرياض</p>
+        </div>
+
+        <a href="https://share.google/BSB2tYLbaKhfRKroQ" target="_blank" class="btn-open" onclick="event.stopPropagation();">
+          <span>انقر هنا للوصول إلى قاعة الاحتفال</span>
+          <span class="sub">LOCATION MAP</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn" id="prevBtn" onclick="prevStep()" disabled>
+      <span>السابق</span> &#8594;
+    </button>
+
+    <div class="nav-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <button class="nav-btn" id="nextBtn" onclick="nextStep()">
+      &#8592; <span>التالي</span>
+    </button>
+  </nav>
+
+</div>
+
+<script>
+let currentStep = 0;
+const totalSteps = 5;
+const screens = document.querySelectorAll('.screen');
+const dots = document.querySelectorAll('.dot');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const cdDisc = document.getElementById('cdDisc');
+const bgMusic = document.getElementById('bgMusic');
+
+let audioCtx = null;
+let autoSlideInterval = null;
+
+function initAudioContext() {
+  if (!audioCtx) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) {
+      audioCtx = new AudioContext();
+    }
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+document.addEventListener('touchstart', initAudioContext, { once: true });
+document.addEventListener('click', initAudioContext, { once: true });
+
+function playMusic() {
+  initAudioContext();
+  if (bgMusic) {
+    bgMusic.muted = false;
+    const playPromise = bgMusic.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        if (cdDisc) cdDisc.classList.remove('paused');
+      }).catch(err => {
+        console.warn("Autoplay blocked:", err);
+      });
+    }
+  }
+}
+
+function pauseMusic() {
+  if (bgMusic) {
+    bgMusic.pause();
+    if (cdDisc) cdDisc.classList.add('paused');
+  }
+}
+
+function toggleMusic(e) {
+  if (e) e.stopPropagation();
+  if (bgMusic.paused) {
+    playMusic();
+  } else {
+    pauseMusic();
+  }
+}
+
+function handleEnvelopeClick() {
+  playMusic();
+  nextStep();
+}
+
+function goToStep(stepIndex) {
+  if (stepIndex < 0 || stepIndex >= totalSteps) return;
+  currentStep = stepIndex;
+
+  screens.forEach((screen, index) => {
+    screen.classList.toggle('active', index === currentStep);
+  });
+  
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentStep);
+  });
+
+  prevBtn.disabled = (currentStep === 0);
+  nextBtn.disabled = (currentStep === totalSteps - 1);
+
+  resetAutoSlide();
+}
+
+function nextStep() {
+  if (currentStep < totalSteps - 1) {
+    goToStep(currentStep + 1);
+  }
+}
+
+function prevStep() {
+  if (currentStep > 0) {
+    goToStep(currentStep - 1);
+  }
+}
+
+function startAutoSlide() {
+  autoSlideInterval = setInterval(() => {
+    if (currentStep < totalSteps - 1) {
+      goToStep(currentStep + 1);
+    } else {
+      clearInterval(autoSlideInterval);
+    }
+  }, 7000);
+}
+
+function resetAutoSlide() {
+  clearInterval(autoSlideInterval);
+  startAutoSlide();
+}
+
+// Countdown Timer
+const eventDate = new Date("September 5, 2026 20:00:00").getTime();
+
+function updateTimer() {
+  const now = new Date().getTime();
+  const diff = eventDate - now;
+
+  if (diff > 0) {
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = String(days).padStart(2, '0');
+    document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+    document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+    document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+  }
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
+startAutoSlide();
+</script>
+
+</body>
+</html>
