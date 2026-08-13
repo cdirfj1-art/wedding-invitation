@@ -76,7 +76,7 @@ body {
 .screen-bg-wrapper {
   position: absolute;
   inset: 0;
-  background-image: url('./images/old.jpeg');
+  background-image: url('./old.jpeg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -184,14 +184,14 @@ body {
   text-shadow: 0 1px 6px rgba(0,0,0,0.9);
 }
 
-/* CARDS WITH BACKGROUND IMAGE (open the message.jpeg) */
+/* CARDS WITH BACKGROUND IMAGE (Open the message.jpeg) */
 .envelope-card-bg {
   width: 92%;
   max-width: 380px;
   min-height: 520px;
   position: relative;
   z-index: 2;
-  background-image: url('./images/Open the message.jpeg');
+  background-image: url('./Open the message.jpeg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -496,7 +496,6 @@ body {
 
   <audio id="bgMusic" loop playsinline preload="auto">
     <source src="./ScreenRecording_08-13-2026 03-16-43_1 2.mp4" type="audio/mp4">
-    <source src="./music.mp3" type="audio/mpeg">
     <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
   </audio>
 
@@ -510,7 +509,7 @@ body {
       </div>
 
       <div class="envelope-overlay" onclick="handleEnvelopeClick()">
-        <img src="./images/The adverb of the message.jpeg" alt="Envelope" class="message-img-hero">
+        <img src="./The adverb of the message.jpeg" alt="Envelope" class="message-img-hero">
         
         <div class="couple-names-under">
           <span>Rahaf</span>
@@ -640,7 +639,6 @@ const bgMusic = document.getElementById('bgMusic');
 let audioCtx = null;
 let autoSlideInterval = null;
 
-// Unlocking Web Audio Context for Mobile Browsers
 function initAudioContext() {
   if (!audioCtx) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
